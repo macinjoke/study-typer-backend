@@ -3,3 +3,5 @@ config/*
 
 dump.rdb
 
+# symlink for study-typer-frontend
+/frontend
