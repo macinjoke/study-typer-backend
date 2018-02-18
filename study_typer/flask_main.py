@@ -3,7 +3,7 @@ from flask_cors import CORS
 import redis
 import json
 import random
-from typing_app.config import config
+from study_typer.config import config
 
 app = Flask(__name__)
 CORS(app)
