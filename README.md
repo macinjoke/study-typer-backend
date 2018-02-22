@@ -1,6 +1,8 @@
 # typing-app
 WebタイピングゲームをReactで作る。
 
+frontend: https://github.com/makky05/study-typer-frontend
+
 # 途中経過
 
 ![study typer demo](https://raw.githubusercontent.com/wiki/makky05/typing-app/images/typing_demo.gif)
