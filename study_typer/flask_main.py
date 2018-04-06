@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, abort
 from flask_cors import CORS
 import redis
 import json
@@ -18,6 +18,10 @@ WORDS_COUNT = 10
 
 @app.route("/api/words", methods=['GET'])
 def index():
+    try:
+        rds.ping()
+    except redis.exceptions.ConnectionError:
+        return abort(503)
     rank = request.args.get('rank', 0)
     key = 'words:{}:audio_available'.format(rank)
     word_ids = rds.zrange(key, 0, -1)
