@@ -17,7 +17,7 @@ WORDS_COUNT = 10
 
 
 @app.route("/api/words", methods=['GET'])
-def index():
+def api_woreds():
     try:
         rds.ping()
     except redis.exceptions.ConnectionError:
