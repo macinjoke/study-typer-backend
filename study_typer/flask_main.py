@@ -3,16 +3,11 @@ from flask_cors import CORS
 import redis
 import json
 import random
-from study_typer.config import config
+from study_typer.config import rds
 
 app = Flask(__name__)
 CORS(app)
 
-rds = redis.StrictRedis(
-    decode_responses=True,
-    host=config['redis']['host'],
-    port=config['redis']['port']
-)
 WORDS_COUNT = 10
 
 
