@@ -2,6 +2,7 @@
 WebタイピングゲームをReactで作る。
 
 frontend: https://github.com/makky05/study-typer-frontend
+**Issueは frotend の方でまとめています**
 
 # 途中経過
 
