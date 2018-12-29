@@ -1,4 +1,4 @@
-# typing-app
+# stdy-typer-backend
 WebタイピングゲームをReactで作る。
 
 このリポジトリはバックエンド側のコードです。
