@@ -35,5 +35,5 @@ def fetch_weblio_rank(search_word):
         print('not match')
 
 if __name__ == '__main__':
-    rank = fetch_weblio_rank('kofdsa dfakos fksdao')
+    rank = fetch_weblio_rank('work')
     print(rank)

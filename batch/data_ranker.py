@@ -1,3 +1,6 @@
+"""
+Rank を 取得し、redis にrank データを付与する。
+"""
 import redis
 import random
 import time
@@ -29,4 +32,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    print('hoge')
+    # main()

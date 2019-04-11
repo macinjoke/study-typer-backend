@@ -1,3 +1,6 @@
+"""
+Google 検索の英単語のヒット数を取得する
+"""
 from bs4 import BeautifulSoup
 import requests
 import os.path

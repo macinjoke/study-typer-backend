@@ -1,3 +1,6 @@
+"""
+英和辞書の日本語をStudy Typer 用に短く変換する
+"""
 import redis
 import re
 
@@ -7,6 +10,9 @@ IDEAL_MAX_WORD_COUNT = 25
 
 
 def main():
+    """
+    redis に格納されている全てのデータに対してconvert_ja_short を実行
+    """
     word_keys = rds.keys('word:*')
     for word_key in word_keys:
         ja = rds.hget(word_key, 'ja')

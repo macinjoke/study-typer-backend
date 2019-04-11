@@ -1,15 +1,17 @@
+"""
+audioディレクトリに入っている `.flac` ファイルからファイル名を取り出し、
+redisに存在するwordならaduio フラグをtrue にして audio_available リストに追加する。
+すでにaudio_available な単語はスルーする。
+ファイル名とredisに英単語名のハイフンやアンスコの有無などの差異は吸収して同一のものとする。
+あれ？ここで差異吸収したらフロント側で、 `redisの英単語名.flac` を再生しようとしたときに
+再生できなくなるな...。
+TODO: 再吸収したらファイル名の方を変更する。
+"""
 import redis
 import subprocess
 import time
 
 rds = redis.StrictRedis(decode_responses=True)
-
-# audioディレクトリに入っている `.flac` ファイルからファイル名を取り出し、
-# redisに存在するwordならaduio フラグをtrue にして audio_available リストに追加する。
-# すでにaudio_available な単語はスルーする。
-# ファイル名とredisに英単語名のハイフンやアンスコの有無などの差異は吸収して同一のものとする。
-# あれ？ここで差異吸収したらフロント側で、 `redisの英単語名.flac` を再生しようとしたときに
-# 再生できなくなってるんじゃ...。
 
 
 def main():

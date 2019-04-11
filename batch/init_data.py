@@ -1,4 +1,6 @@
-
+"""
+ejdic-hand-utf8.txt ファイルから redis にデータを格納する。 初期化
+"""
 import json
 import redis
 import re

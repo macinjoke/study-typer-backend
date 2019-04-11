@@ -1,3 +1,7 @@
+"""
+現在redisにあるデータをランク別、音声ありなし別でわかりやすく表示する
+"""
+
 import redis
 
 rds = redis.StrictRedis(decode_responses=True)
