@@ -11,7 +11,7 @@ services:
     networks:
       - webnet
   redis:
-    image: redis:4
+    image: redis:5
     ports:
       - "6379:6379"
     volumes:
