@@ -9,7 +9,7 @@ rds = redis.StrictRedis(decode_responses=True)
 
 def show_all():
     print(f'key counts: {rds.dbsize()}')
-    for i in range(30):
+    for i in range(31):
         show_word_count(i)
 
 

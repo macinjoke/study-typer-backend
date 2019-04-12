@@ -2,10 +2,6 @@
 audioディレクトリに入っている `.flac` ファイルからファイル名を取り出し、
 redisに存在するwordならaduio フラグをtrue にして audio_available リストに追加する。
 すでにaudio_available な単語はスルーする。
-ファイル名とredisに英単語名のハイフンやアンスコの有無などの差異は吸収して同一のものとする。
-あれ？ここで差異吸収したらフロント側で、 `redisの英単語名.flac` を再生しようとしたときに
-再生できなくなるな...。
-TODO: 再吸収したらファイル名の方を変更する。
 """
 import redis
 import subprocess
@@ -27,38 +23,36 @@ def main():
     print(f'{len(en_words)} 個の単語についてredisを探索します')
     count = 0
     for en in en_words:
-        word = get_existing_word(en)
-        if word is not None:
-            for i in range(1, 31):
-                if rds.zscore(f'words:{i}', word) is not None:
-                    count += 1
-                    print(f'{i}: {word} のaudioを有効化します。')
-                    set_audio(word, i)
+        for i in range(1, 31):
+            if rds.zscore(f'words:{i}', en) is not None:
+                count += 1
+                print(f'{i}: {en} のaudioを有効化します。')
+                set_audio(en, i)
 
 
-def get_existing_word(en):
-    """
-    ハイフン-やアンスコ_などを含むファイル名を、redisのword:{hoge} のkeyに存在する
-    英単語に直して返す。redisに存在しなければNone を返す。
-    :param en: 英単語の文字列 
-    :return: redisのキーに存在する英単語文字列 or None
-    """
-    en = en.lower()
-    if rds.exists(f'word:{en}'):
-        return en
-    elif en.find('-') != -1:
-        replaced = en.replace("-", " ")
-        if rds.exists(f'word:{replaced}'):
-            return replaced
-    elif en.find('_') != -1:
-        replaced = en.replace("_", " ")
-        if rds.exists(f'word:{replaced}'):
-            return replaced
-        replaced = en.replace("_", "-")
-        if rds.exists(f'word:{replaced}'):
-            return replaced
-    else:
-        return None
+# def get_existing_word(en):
+#     """
+#     ハイフン-やアンスコ_などを含むファイル名を、redisのword:{hoge} のkeyに存在する
+#     英単語に直して返す。redisに存在しなければNone を返す。
+#     :param en: 英単語の文字列
+#     :return: redisのキーに存在する英単語文字列 or None
+#     """
+#     en = en.lower()
+#     if rds.exists(f'word:{en}'):
+#         return en
+#     elif en.find('-') != -1:
+#         replaced = en.replace("-", " ")
+#         if rds.exists(f'word:{replaced}'):
+#             return replaced
+#     elif en.find('_') != -1:
+#         replaced = en.replace("_", " ")
+#         if rds.exists(f'word:{replaced}'):
+#             return replaced
+#         replaced = en.replace("_", "-")
+#         if rds.exists(f'word:{replaced}'):
+#             return replaced
+#     else:
+#         return None
 
 
 def set_audio(word, rank):
