@@ -19,13 +19,5 @@ services:
     networks:
       - webnet
     command: redis-server
-  frontend:
-    build: "./frontend"
-    ports:
-      - "8080:8080"
-    volumes:
-      - "./frontend:/app"
-    environment:
-      NODE_ENV: "dev"
 networks:
   webnet:
